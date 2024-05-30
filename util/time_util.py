@@ -1,7 +1,4 @@
-import re
-import datetime
-
-import pytz
+import re, datetime, pytz
 
 
 def time_generator():
@@ -13,7 +10,6 @@ def time_generator():
 
 def format_datestr_with_zone(datetime_str: str):
     """
-    格式化带时区时间字符串，返回datetime类型时间
     :param datetime_str: 2022-06-14T15:16:31+00:00
     :return: datetime
     """
