@@ -4,7 +4,7 @@ from bson import ObjectId
 from pydantic import BaseModel, constr
 
 class SensorBaseSchema(BaseModel):
-    equipment_id: str
+    equipmentId: str
     timestamp: datetime
     value: float
 
@@ -18,11 +18,11 @@ class SensorBaseSchema(BaseModel):
 
 
 class CreateSensorSchema(SensorBaseSchema):
-    equipment_id: constr(min_length=3)
+    equipmentId: constr(min_length=3)
     pass
 
 
 class SensorResponse(SensorBaseSchema):
-    equipment_id: str
+    equipmentId: str
     timestamp: datetime
 

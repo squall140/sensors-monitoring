@@ -1,10 +1,11 @@
-from fastapi import APIRouter, status, HTTPException, Response
+import json, pandas as pd
+from fastapi import APIRouter, status, HTTPException, Response, UploadFile
 from .. import schemas
 from db.mongodb import Sensor
 
 router = APIRouter()
 
-@router.post('/', status_code=status.HTTP_201_CREATED)
+@router.post('/add', status_code=status.HTTP_201_CREATED)
 def create_sensor(sensor: schemas.CreateSensorSchema):
     try:
         result = Sensor.insert_one(sensor.dict())
@@ -13,11 +14,17 @@ def create_sensor(sensor: schemas.CreateSensorSchema):
     except Exception:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-
-@router.get('/')
-def get_sensor_data(limit: int = 20, page: int = 1):
-    skip = (page - 1) * limit
-    # TODO:
+@router.post('/import', status_code=status.HTTP_201_CREATED)
+async def import_csv(file: UploadFile) -> dict:
+    data = pd.read_csv(file.file)
+    file.file.close()
+    data_json = json.loads(data.to_json(orient='records'))
+    Sensor.insert_many(data_json)
+    return {
+        'status': 'success',
+        "message": "data imported successfully",
+        "status": 200
+    }
 
 
 def populatedSensorEntity(sensor) -> dict:
