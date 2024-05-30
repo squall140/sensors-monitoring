@@ -5,7 +5,7 @@ from pydantic import BaseModel
 from bson.objectid import ObjectId
 
 
-class SensorBaseSchema(BaseModel):
+class SensorSchema(BaseModel):
     equipment_id: str
     timestamp: datetime
     value: float
@@ -20,7 +20,7 @@ class SensorBaseSchema(BaseModel):
         json_encoders = {ObjectId: str}
 
 
-class SensorResponse(SensorBaseSchema):
+class SensorResponse(SensorSchema):
     equipment_id: str
     timestamp: datetime
 
