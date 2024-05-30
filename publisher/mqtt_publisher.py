@@ -9,18 +9,18 @@ We assume that we need to monitor the temperature of our machines. Valid tempera
 In this case we need to do sensors validation first. 
 """
 
-def is_valid_sensor(equipment_id):
-    if not equipment_id.startswith('EQ'):
+def is_valid_sensor(equipmentId):
+    if not equipmentId.startswith('EQ'):
         raise ValueError("Unknown request")
 
 
 # TODO: for tes
 sensors = []
 for _ in range(2000):
-    equipment_id = str("EQ-" +  str(random.randint(10001, 12000)))
+    equipmentId = str("EQ-" +  str(random.randint(10001, 12000)))
     timestamp = str(time_generator())
     value = 88.42
-    sensors.append({'equipment_id': equipment_id, 'timestamp': timestamp, 'value': value})
+    sensors.append({'equipmentId': equipmentId, 'timestamp': timestamp, 'value': value})
 
 
 def on_connect(self, userdata, flags, rc):
@@ -37,7 +37,7 @@ client.connect(envs.MQTT_BROKER, envs.MQTT_BROKER_PORT, 60)
 while True:
     for sensor in sensors:
         # sensor data validation
-        is_valid_sensor(sensor['equipment_id'])
+        is_valid_sensor(sensor['equipmentId'])
         json_payload = json.dumps(sensor)
         client.publish(envs.MQTT_TOPIC, json_payload)
     # 2000 records writing operation per second
