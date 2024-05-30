@@ -1,27 +1,28 @@
-from __future__ import annotations
-
 from datetime import datetime
-from pydantic import BaseModel
-from bson.objectid import ObjectId
 
+from bson import ObjectId
+from pydantic import BaseModel, constr
 
-class SensorSchema(BaseModel):
+class SensorBaseSchema(BaseModel):
     equipment_id: str
     timestamp: datetime
     value: float
-    # Pydantic Bug
-    created_at: datetime | None = None
-    updated_at: datetime | None = None
 
     class Config:
-        orm_mode = True
-        allow_population_by_field_name = True
-        arbitrary_types_allowed = True
+        # Deprecated in V1
+        # orm_mode = True
+        # allow_population_by_field_name = True
+        from_attributes = True
+        populate_by_name = True
         json_encoders = {ObjectId: str}
 
 
-class SensorResponse(SensorSchema):
+class CreateSensorSchema(SensorBaseSchema):
+    equipment_id: constr(min_length=3)
+    pass
+
+
+class SensorResponse(SensorBaseSchema):
     equipment_id: str
     timestamp: datetime
-
 

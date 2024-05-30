@@ -3,6 +3,7 @@ from api.routers import sensor
 
 app = FastAPI()
 
+# routers
 app.include_router(sensor.router, tags=['Sensors'], prefix='/api/sensor')
 
 
