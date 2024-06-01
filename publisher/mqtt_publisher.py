@@ -2,6 +2,7 @@ import json, random, time
 import paho.mqtt.client as mqtt
 import util.envs as envs
 
+from util.mock import mock_sensor_data
 from util.time_util import time_generator
 
 """
@@ -14,13 +15,8 @@ def is_valid_sensor(equipmentId):
         raise ValueError("Unknown request")
 
 
-# TODO: for tes
-sensors = []
-for _ in range(2000):
-    equipmentId = str("EQ-" +  str(random.randint(10001, 12000)))
-    timestamp = str(time_generator())
-    value = 88.42
-    sensors.append({'equipmentId': equipmentId, 'timestamp': timestamp, 'value': value})
+# mock generate real-time sensor data
+sensors = mock_sensor_data()
 
 
 def on_connect(self, userdata, flags, rc):

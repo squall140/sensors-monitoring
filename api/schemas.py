@@ -3,6 +3,10 @@ from datetime import datetime
 from bson import ObjectId
 from pydantic import BaseModel, constr
 
+# define a sensor schema based on the BaseModel provided by pydantic
+# we can easily do some param validation using annotation
+# furthermore, when we need to implement a domain driven design, we also need DTO,
+# the using of this schema is also like DTO(Data Transfer Object)
 class SensorBaseSchema(BaseModel):
     equipmentId: str
     timestamp: datetime
