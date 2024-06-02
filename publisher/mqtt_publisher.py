@@ -1,9 +1,8 @@
-import json, random, time
+import json, time
 import paho.mqtt.client as mqtt
 import util.envs as envs
 
 from util.mock import mock_sensor_data
-from util.time_util import time_generator
 
 """
 We assume that we need to monitor the temperature of our machines. Valid temperature range should be between 30 to 100. 

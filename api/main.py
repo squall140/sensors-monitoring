@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
-from api.routers import sensor
+from routers import sensor
 
 app = FastAPI()
 
