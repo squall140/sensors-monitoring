@@ -2,8 +2,8 @@ import json
 import pandas as pd
 
 from fastapi import APIRouter, status, HTTPException, Response, UploadFile
-from api import schemas
-from db.mongodb import Sensor
+import schemas
+from mongodb import Sensor
 from util.time_util import time_generator
 
 

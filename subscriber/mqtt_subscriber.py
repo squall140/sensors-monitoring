@@ -1,6 +1,6 @@
 import json
 import paho.mqtt.client as mqtt
-from db.mongodb import Sensor
+from mongodb import Sensor
 import util.envs as envs
 
 
