@@ -5,8 +5,9 @@ from routers import sensor
 app = FastAPI()
 
 origins = [
-    "http://localhost:3000",
-    "localhost:3000"
+    "http://127.0.0.1:3000",
+    "http://127.0.0.1:8080",
+    "http://127.0.0.1"
 ]
 
 app.add_middleware(
