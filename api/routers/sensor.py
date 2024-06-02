@@ -17,23 +17,26 @@ def get_sensor_average_data():
 
     :return: JsonObject
     """
-    arr_time = [0,5,3,5]
+    arr_time = [24,48,168,720]
     labels =['24 hours', '48 hours', 'weekly', 'monthly']
     values = []
     for i in arr_time:
         pipeline = [
-            {'$match': {'timestamp': {'$lte': time_generator(i)}}},
+            {'$match': {'timestamp': {'$gte': time_generator(i)}}},
             {'$group': {
                 '_id': None,
                 'average': {'$avg': '$value'}
             }}
         ]
 
-        cursor = Sensor.aggregate(pipeline)
-        objDict = list(cursor)[0]
-        average = "{:.2f}".format(objDict['average'])
-        values.append(average)
-        # objDict['hours'] = i
+        result = list(Sensor.aggregate(pipeline))
+        if result:
+            objDict = result[0]
+            average = "{:.2f}".format(objDict['average'])
+            values.append(average)
+            # objDict['hours'] = i
+        else:
+            values.append(None)
 
     return {
         "status": 200,
