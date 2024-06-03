@@ -29,7 +29,7 @@ services:
 
   # MQTT publisher (service)
   sensor-publisher:
-    image: sensors/publisher:1.0
+    build: ../publisher
     depends_on:
       - broker
     networks:
@@ -37,7 +37,7 @@ services:
 
   # MQTT subscriber (service)
   sensor-subscriber:
-    image: sensors/subscriber:1.0
+    build: ../subscriber
     depends_on:
       - broker
       - mongo
@@ -46,7 +46,7 @@ services:
 
   # API endpoint (service)
   sensor-api:
-    image: sensors/api:1.0
+    build: ../api
     depends_on:
       - mongo
     ports:
@@ -54,9 +54,9 @@ services:
     networks:
       - sensors_network
 
-  # frontend
+  # frontend (service)
   sensor-frontend:
-    image: sensors/frontend:1.0
+    build: ../frontend
     depends_on:
       - mongo
       - sensor-api

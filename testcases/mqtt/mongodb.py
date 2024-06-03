@@ -1,6 +1,6 @@
-import sub_util.envs as envs
 from pymongo import mongo_client
 
+import envs
 
 # setting up connection with mongodb
 dbclient = mongo_client.MongoClient(envs.DB_URL)
