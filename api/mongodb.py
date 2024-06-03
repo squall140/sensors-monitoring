@@ -1,4 +1,4 @@
-import util.envs as envs
+import api_util.envs as envs
 from pymongo import mongo_client
 
 # setting up connection with mongodb
