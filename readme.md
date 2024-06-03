@@ -26,15 +26,17 @@ Assume a scenario, there are a lot of sensors in a large scale factory, we need 
   - As a message queue, Mosquitto can allow us to retrieve data from itself. It That means if the pub/sub services was down and restarted, it also can send/fetch data from the broker mainly because of the persistent feature. That is why we decided to set up an independent broker or a broker cluster for a better stability.
   - When we need to consider expanding our system in order to reach a better system throughput, we only need to focus on the cluster mode based on this infrastructure rather than rebuild all of our system skeletons. For example, if we need monitor more sensors, we can easily deploy a new subscriber to listen to any data from each sensor, publishing these data to the broker. 
 
-### 4. Infrastructure Diagram
-
-![img.png](img.png)
-
-### 5. Deployment
+### 4. Deployment
 
 - git clone & cd ./release
+- 
+- docker-compose up -d
 
-- docker-compose up -d 
+### 5. Infrastructure Diagram
+
+![mqtt_broker](https://github.com/squall140/sensors-monitoring/assets/2128238/b174a8a3-1089-4902-9620-06475fb0a73d)
+
+
 
   
 
