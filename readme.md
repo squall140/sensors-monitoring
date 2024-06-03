@@ -5,8 +5,8 @@ Assume a scenario, there are a lot of sensors in a large scale factory, we need 
 ### 2. Constraint
 
 - Development languages 
-  - Python (Backend)
-  - ReactJs (Frontend)
+  - Python (Backend)     https://github.com/squall140/sensors-monitoring
+  - ReactJs (Frontend)   https://github.com/squall140/monitor
 
 - Timeline 
   - A demo for beginning, all the works should be finished in a week
