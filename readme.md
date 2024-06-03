@@ -20,8 +20,17 @@ Assume a scenario, there are a lot of sensors in a large scale factory, we need 
 
 - Since we need to collect all of our sensors' data, the first comes to my mind is the network transfer. Based on this scenario, we need to choose a suitable network transfer protocol. From my understanding I think the best one is the MQTT protocol. Because its payload is very thin and light, allowing us to send and retrieve data to our server smoothly.
 
-- We need a MQTT broker like a message queue, allow us to use the "pub/sub" feature to realize our goal. I decidee to use the "Mosquito" for basic scenario.
+- We need a MQTT broker like a message queue, allow us to use the "pub/sub" feature to realize our goal. I decided to use the "Mosquito" for basic scenario.
 
+- Data Transfer
+  - Publisher: In most actual scenarios, Device sensors should support publisher function, we can easily write some code at the device end, sending data to our MQTT broker.
+  - I just used a simple mock function to simulate the sensor data publishing process. 
+  - Subscriber: We can easily deploy subscribers to retrieve data from the broker and transfer related data into our sequence database(mongodb).
+
+- API Endpoint
+  - Maybe we need to append some data manually, we can also use the API service.
+  - API also support other HTTP services for further requirements.
+  
 - Stability & Extensibility
   - As a message queue, Mosquitto can allow us to retrieve data from itself. It That means if the pub/sub services was down and restarted, it also can send/fetch data from the broker mainly because of the persistent feature. That is why we decided to set up an independent broker or a broker cluster for a better stability.
   - When we need to consider expanding our system in order to reach a better system throughput, we only need to focus on the cluster mode based on this infrastructure rather than rebuild all of our system skeletons. For example, if we need monitor more sensors, we can easily deploy a new subscriber to listen to any data from each sensor, publishing these data to the broker. 
@@ -30,10 +39,12 @@ Assume a scenario, there are a lot of sensors in a large scale factory, we need 
 
 - git clone & cd ./release
 - docker-compose up -d
+- backend: http://127.0.0.1:8000/docs
+- frontend: http://127.0.0.1:8080
 
 ### 5. Infrastructure Diagram
 
-![mqtt_broker](https://github.com/squall140/sensors-monitoring/assets/2128238/b174a8a3-1089-4902-9620-06475fb0a73d)
+![mqtt_broker](https://github.com/squall140/sensors-monitoring/assets/2128238/6126427a-97ee-463c-8aa1-a2c5053bf56b)
 
 
 
