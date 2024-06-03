@@ -44,7 +44,7 @@ Assume a scenario, there are a lot of sensors in a large scale factory, we need 
 
 ### 5. Infrastructure Diagram
 
-![mqtt_broker](https://github.com/squall140/sensors-monitoring/assets/2128238/6126427a-97ee-463c-8aa1-a2c5053bf56b)
+![mqtt_broker drawio](https://github.com/squall140/sensors-monitoring/assets/2128238/3f3d4075-6b7f-46ea-8f02-f0d89b363fc0)
 
 
 
