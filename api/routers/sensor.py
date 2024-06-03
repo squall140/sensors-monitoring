@@ -1,10 +1,10 @@
 import json
 import pandas as pd
+import schemas
 
 from fastapi import APIRouter, status, HTTPException, Response, UploadFile
-import schemas
 from mongodb import Sensor
-from util.time_util import time_generator
+from api_util.time_util import time_generator
 
 
 router = APIRouter()

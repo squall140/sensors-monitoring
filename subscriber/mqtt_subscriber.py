@@ -1,7 +1,7 @@
 import json
 import paho.mqtt.client as mqtt
 from mongodb import Sensor
-import util.envs as envs
+import sub_util.envs as envs
 
 
 def on_message(client, userdata, message):
