@@ -29,7 +29,6 @@ Assume a scenario, there are a lot of sensors in a large scale factory, we need 
 ### 4. Deployment
 
 - git clone & cd ./release
-- 
 - docker-compose up -d
 
 ### 5. Infrastructure Diagram
