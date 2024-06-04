@@ -35,6 +35,12 @@ Assume a scenario, there are a lot of sensors in a large scale factory, we need 
   - As a message queue, Mosquitto can allow us to retrieve data from itself. It That means if the pub/sub services was down and restarted, it also can send/fetch data from the broker mainly because of the persistent feature. That is why we decided to set up an independent broker or a broker cluster for a better stability.
   - When we need to consider expanding our system in order to reach a better system throughput, we only need to focus on the cluster mode based on this infrastructure rather than rebuild all of our system skeletons. For example, if we need monitor more sensors, we can easily deploy a new subscriber to listen to any data from each sensor, publishing these data to the broker. 
 
+- Storage
+  - At the beginning, we only need to monitor 2000 machines, that means we need a time-sequence data storage to keep our data.
+  - At this time, I decided to choose MongoDB. A very simple algorithm as described below:
+    - The data size of each sensor data package is around 80 bytes.
+    - 80(B) * 2000 * 3600 * 24 = 12.87(GB)  That means perhaps we need to store 13GB into our database every day, 390(GB) per month.
+  - I decided to use MongoDB mainly because the nice I/O performance, the writing bottleneck with single instance can reach almost 10,000 records per second.
 ### 4. Deployment
 
 - git clone & cd ./release
